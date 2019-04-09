@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using NIDashboard.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NIDashboard.Data.Models;
 
 namespace NIDashboard
 {
@@ -38,7 +39,8 @@ namespace NIDashboard
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NIDashboard.Data.Models;
 
 namespace NIDashboard.Data
 {
@@ -12,5 +13,7 @@ namespace NIDashboard.Data
             : base(options)
         {
         }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
