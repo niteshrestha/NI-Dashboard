@@ -40,7 +40,8 @@ namespace NIDashboard
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
