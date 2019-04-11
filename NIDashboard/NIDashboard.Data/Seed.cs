@@ -15,7 +15,7 @@ namespace NIDashboard.Data
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            string[] roleNames = { "HOD", "Teachers", "Student" };
+            string[] roleNames = { "HOD", "Teacher", "Student" };
 
             IdentityResult roleResult;
 
