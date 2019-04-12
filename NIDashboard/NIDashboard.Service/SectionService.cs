@@ -1,4 +1,5 @@
-﻿using NIDashboard.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,16 @@ namespace NIDashboard.Service
 {
     public class SectionService : ISection
     {
-        public Task Create(Section section)
+        private readonly ApplicationDbContext _context;
+        public SectionService(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task Create(Section section)
+        {
+            _context.Add(section);
+            await _context.SaveChangesAsync();
         }
 
         public Task Delete(int sectionId)
@@ -21,7 +29,8 @@ namespace NIDashboard.Service
 
         public IEnumerable<Section> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Sections
+                .Include(section => section.Posts);
         }
 
         public Section GetByID(int id)

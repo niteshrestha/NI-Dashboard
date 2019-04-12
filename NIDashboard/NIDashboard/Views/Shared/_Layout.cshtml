@@ -32,8 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-
-                        @*TODO:More Menu Items*@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Section" asp-action="Index">Section</a>
+                        </li>
 
                         @if (User.IsInRole("HOD"))
                         {

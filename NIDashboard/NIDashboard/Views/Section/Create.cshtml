@@ -1,0 +1,20 @@
+﻿@model NIDashboard.Models.Section.AddSectionModel
+@{
+    ViewData["Title"] = "Create Section";
+}
+
+<h1>New Section</h1>
+
+<form asp-action="AddSection" method="post" id="createSectionForm">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <button type="submit" id="createSectionBtn" class="btn btn-outline-primary">
+        Create
+    </button>
+</form>

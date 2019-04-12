@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Sections";
+}
+@model NIDashboard.Models.Section.SectionIndexModel
+
+<h1 class="display-4">Sections</h1>
+
+@if (Model.Sections.Any())
+{
+    @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+    {
+        <span id="headingBtn">
+            <a asp-controller="Section" asp-action="Create" class="btn btn-outline-primary">
+                New Section
+            </a>
+        </span>
+    }
+    <table class="table table-hover" id="sectionIndexTable">
+        <tbody>
+            @foreach (var listingModel in Model.Sections)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Section" asp-action="Topic" asp-route-id="@listingModel.Id">
+                            @listingModel.Title
+                        </a>
+                    </td>
+                    <td>
+                        @listingModel.Description
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

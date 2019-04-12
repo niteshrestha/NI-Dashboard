@@ -14,6 +14,7 @@ using NIDashboard.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NIDashboard.Data.Models;
+using NIDashboard.Service;
 
 namespace NIDashboard
 {
@@ -44,6 +45,8 @@ namespace NIDashboard
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ISection, SectionService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
