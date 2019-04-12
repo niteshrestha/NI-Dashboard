@@ -15,5 +15,7 @@ namespace NIDashboard.Data
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

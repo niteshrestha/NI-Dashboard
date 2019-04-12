@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NIDashboard.Data\NIDashboard.Data.csproj" />
+    <ProjectReference Include="..\NIDashboard.Service\NIDashboard.Service.csproj" />
   </ItemGroup>
 
 </Project>

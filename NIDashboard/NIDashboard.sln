@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.28721.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NIDashboard", "NIDashboard\NIDashboard.csproj", "{5572D76D-8D7C-4A60-B253-9F0E7AC28B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NIDashboard.Data", "NIDashboard.Data\NIDashboard.Data.csproj", "{3B684FA4-8903-4108-A9B9-B6955F4B7D4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NIDashboard.Data", "NIDashboard.Data\NIDashboard.Data.csproj", "{3B684FA4-8903-4108-A9B9-B6955F4B7D4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NIDashboard.Service", "NIDashboard.Service\NIDashboard.Service.csproj", "{55C0FA93-7793-4F2F-9146-132A6E198B8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3B684FA4-8903-4108-A9B9-B6955F4B7D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B684FA4-8903-4108-A9B9-B6955F4B7D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B684FA4-8903-4108-A9B9-B6955F4B7D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C0FA93-7793-4F2F-9146-132A6E198B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C0FA93-7793-4F2F-9146-132A6E198B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C0FA93-7793-4F2F-9146-132A6E198B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C0FA93-7793-4F2F-9146-132A6E198B8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
