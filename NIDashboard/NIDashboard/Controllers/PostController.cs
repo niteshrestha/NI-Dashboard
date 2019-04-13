@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
@@ -40,7 +41,7 @@ namespace NIDashboard.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles ="HOD, Teacher")]
         public IActionResult Create(int id)
         {
             //id is SectionId

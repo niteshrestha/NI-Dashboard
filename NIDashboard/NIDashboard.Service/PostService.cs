@@ -35,7 +35,9 @@ namespace NIDashboard.Service
 
         public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Posts
+                .Include(post => post.User)
+                .Include(post => post.Section);
         }
 
         public Post GetById(int id)
@@ -49,7 +51,7 @@ namespace NIDashboard.Service
 
         public IEnumerable<Post> GetLatestPost(int n)
         {
-            throw new NotImplementedException();
+            return GetAll().OrderByDescending(post => post.Created).Take(n);
         }
 
         public IEnumerable<Post> GetPostBySection(int id)
