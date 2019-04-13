@@ -1,0 +1,57 @@
+﻿@using NIDashboard.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Announcements";
+}
+@model NIDashboard.Models.Section.SectionTopicModel
+
+<h1 class="display-4">Announcements for @Model.Section.Title</h1>
+
+@if (Model.Posts.Any())
+{
+    @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+    {
+        <a asp-controller="Post" asp-action="Create" asp-route-id=@Model.Section.Id class="btn btn-outline-primary col-auto">
+            <i class="fas fa-plus-square"></i> New Announcement
+        </a>
+    }
+    <p/>
+    <table class="table table-hover table-sm table-bordered" id="latestPostsTable">
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>
+                        <a class="text-decoration-none" asp-controller="Post" asp-action="Index" asp-route-id=@post.Id>
+                            <div class="row">
+                                <div class="postTitle col-md-auto">
+                                    @post.Title
+                                </div>
+                            </div>
+                            <div class="postSubTitle row">
+                                <div class="col-md-auto">
+                                    Posted by @post.AuthorName
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="noPost">
+        <h3>
+            Wow such empty! <br />
+            Why not
+            <a class="text-decoration-none" asp-controller="Post" asp-action="Create" asp-route-id="@Model.Section.Id">
+                <span>create</span>
+            </a>
+            one?
+        </h3>
+    </div>
+}

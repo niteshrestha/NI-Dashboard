@@ -1,7 +1,9 @@
-﻿using NIDashboard.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,9 +11,16 @@ namespace NIDashboard.Service
 {
     public class PostService : IPost
     {
-        public Task Add(Post post)
+        private readonly ApplicationDbContext _context;
+        public PostService(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task Add(Post post)
+        {
+            _context.Add(post);
+            await _context.SaveChangesAsync();
         }
 
         public Task Delete(int id)
@@ -31,7 +40,11 @@ namespace NIDashboard.Service
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Posts
+                .Where(post => post.Id == id)
+                .Include(post => post.User)
+                .Include(post => post.Section)
+                .First();
         }
 
         public IEnumerable<Post> GetLatestPost(int n)

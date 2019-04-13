@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
+using NIDashboard.Data.Models;
+using NIDashboard.Models.Post;
 using NIDashboard.Models.Section;
 
 namespace NIDashboard.Controllers
@@ -40,6 +42,47 @@ namespace NIDashboard.Controllers
         {
             var model = new AddSectionModel();
             return View(model);
+        }
+
+        public IActionResult Topic(int id)
+        {
+            var section = _sectionService.GetByID(id);
+
+            var posts = section.Posts;
+
+            var postListing = posts.Select(post => new PostListingModel
+            {
+                Id = post.Id,
+                Title = post.Title,
+                DatePosted = post.Created.ToString(),
+                AuthorName = post.User.FirstName + " " + post.User.LastName,
+                Section = BuildSectionListing(post)
+            });
+
+            var model = new SectionTopicModel
+            {
+                Posts = postListing,
+                Section = BuildSectionListing(section)
+            };
+
+            return View(model);
+        }
+
+        private SectionListingModel BuildSectionListing(Section section)
+        {
+            return new SectionListingModel
+            {
+                Id = section.Id,
+                Title = section.Title,
+                Description = section.Description
+            };
+        }
+
+        private SectionListingModel BuildSectionListing(Post post)
+        {
+            var section = post.Section;
+
+            return BuildSectionListing(section);
         }
 
         [HttpPost]

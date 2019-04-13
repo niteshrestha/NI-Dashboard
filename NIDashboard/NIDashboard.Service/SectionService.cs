@@ -3,6 +3,7 @@ using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +36,13 @@ namespace NIDashboard.Service
 
         public Section GetByID(int id)
         {
-            throw new NotImplementedException();
+            var section = _context.Sections
+                .Where(s => s.Id == id)
+                .Include(s => s.Posts)
+                .ThenInclude(p => p.User)
+                .FirstOrDefault();
+
+            return section;
         }
 
         public Task UpdateSectionDescription(int sectionId, string newSectionDescription)

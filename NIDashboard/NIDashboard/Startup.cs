@@ -47,6 +47,7 @@ namespace NIDashboard
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<ISection, SectionService>();
+            services.AddScoped<IPost, PostService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
