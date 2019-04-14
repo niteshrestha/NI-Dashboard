@@ -8,6 +8,7 @@ using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using NIDashboard.Models.Post;
 using NIDashboard.Models.Section;
+using NIDashboard.Service;
 
 namespace NIDashboard.Controllers
 {
@@ -50,11 +51,13 @@ namespace NIDashboard.Controllers
 
             var posts = section.Posts;
 
+            TimeDifference td = new TimeDifference();
+
             var postListing = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
                 Title = post.Title,
-                DatePosted = post.Created.ToString(),
+                DatePosted = td.PostTimeDifference(post.Created),
                 AuthorName = post.User.FirstName + " " + post.User.LastName,
                 Section = BuildSectionListing(post)
             });

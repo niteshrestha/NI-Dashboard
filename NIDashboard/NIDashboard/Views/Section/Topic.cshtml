@@ -18,7 +18,7 @@
         </a>
     }
     <p/>
-    <table class="table table-hover table-sm table-bordered" id="latestPostsTable">
+    <table class="table table-hover table-sm" id="latestPostsTable">
         <tbody>
             @foreach (var post in Model.Posts)
             {
@@ -26,13 +26,16 @@
                     <td>
                         <a class="text-decoration-none" asp-controller="Post" asp-action="Index" asp-route-id=@post.Id>
                             <div class="row">
-                                <div class="col-md-auto">
+                                <div class="col-md-auto postTitle">
                                     @post.Title
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-auto">
+                                <div class=" col-auto postSubTitle">
                                     Posted by @post.AuthorName
+                                </div>
+                                <div class="postSubTitle">
+                                    @post.DatePosted
                                 </div>
                             </div>
                         </a>
