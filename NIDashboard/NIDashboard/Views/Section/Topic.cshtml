@@ -7,7 +7,21 @@
 }
 @model NIDashboard.Models.Section.SectionTopicModel
 
-<h1 class="display-4">Announcements for @Model.Section.Title</h1>
+<div class="row">
+    <h1 class="display-4 col">
+        Announcements for @Model.Section.Title
+    </h1>
+    @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+    {
+        <form class="col-auto align-self-center">
+            <div>
+                <a class="btn btn-outline-danger" asp-controller="Section" asp-action="Delete" asp-route-id="@Model.Section.Id">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </form>
+    }
+</div>
 
 @if (Model.Posts.Any())
 {

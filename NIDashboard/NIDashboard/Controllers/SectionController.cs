@@ -71,6 +71,12 @@ namespace NIDashboard.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Delete(int Id)
+        {
+            await _sectionService.Delete(Id);
+            return RedirectToAction("Index", "Section");
+        }
+
         private SectionListingModel BuildSectionListing(Section section)
         {
             return new SectionListingModel
