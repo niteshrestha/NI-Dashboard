@@ -59,9 +59,9 @@ namespace NIDashboard.Controllers
         }
 
         [Authorize(Roles ="HOD, Teacher")]
-        public IActionResult Delete(int Id)
+        public async Task<IActionResult> Delete(int Id)
         {
-            _postService.Delete(Id);
+            await _postService.Delete(Id);
             return RedirectToAction("Index", "Home");
         }
 
@@ -73,7 +73,6 @@ namespace NIDashboard.Controllers
             var post = BuildPost(model, user);
 
             _postService.Add(post).Wait();
-
             return RedirectToAction("Index", "Post", new { id = post.Id });
         }
 

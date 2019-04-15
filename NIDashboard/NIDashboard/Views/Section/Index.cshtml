@@ -13,7 +13,7 @@
             <i class="fas fa-plus-square"></i> New Section
         </a>
     }
-    <p/>
+    <p />
     <table class="table table-hover" id="sectionIndexTable">
         <tbody>
             @foreach (var listingModel in Model.Sections)
@@ -34,6 +34,15 @@
 }
 else
 {
-
+    <div class="noPost">
+        <h3>
+            Wow such empty! <br />
+            Why not
+            <a class="text-decoration-none" asp-controller="Section" asp-action="Create">
+                <span>create</span>
+            </a>
+            one?
+        </h3>
+    </div>
 }
 
