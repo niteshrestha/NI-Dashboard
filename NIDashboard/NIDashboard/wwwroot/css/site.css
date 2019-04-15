@@ -61,10 +61,14 @@ body {
 
 .postTitle {
     font-size: 20px;
-    font-family: 'Roboto';
+    font-family: 'Montserrat';
 }
 
 .postSubTitle {
-    font-family:'Roboto Mono';
-    font-size:12px;
+    font-family: 'Montserrat';
+    font-size: 12px;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat';
 }

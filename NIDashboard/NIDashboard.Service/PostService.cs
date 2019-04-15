@@ -23,9 +23,11 @@ namespace NIDashboard.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var post = GetById(id);
+            _context.Remove(post);
+            await _context.SaveChangesAsync();
         }
 
         public Task EditPost(int id, string newContent)
@@ -46,7 +48,7 @@ namespace NIDashboard.Service
                 .Where(post => post.Id == id)
                 .Include(post => post.User)
                 .Include(post => post.Section)
-                .First();
+                .FirstOrDefault();
         }
 
         public IEnumerable<Post> GetLatestPost(int n)

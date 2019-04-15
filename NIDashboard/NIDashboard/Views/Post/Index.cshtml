@@ -6,12 +6,22 @@
 
 <div class="container">
     <div class="row">
-        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-primary col-auto">
+        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <h3 class="col">
+        <h2 class="col">
             @Model.Title
-        </h3>
+        </h2>
+        @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+        {
+            <form class="col-auto align-self-center">
+                <div>
+                    <a class="btn btn-outline-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id" >
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </form>
+        }
     </div>
 </div>
 

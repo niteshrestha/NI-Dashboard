@@ -41,6 +41,7 @@ namespace NIDashboard.Controllers
 
             return View(model);
         }
+
         [Authorize(Roles ="HOD, Teacher")]
         public IActionResult Create(int id)
         {
@@ -55,6 +56,13 @@ namespace NIDashboard.Controllers
             };
 
             return View(model);
+        }
+
+        [Authorize(Roles ="HOD, Teacher")]
+        public IActionResult Delete(int Id)
+        {
+            _postService.Delete(Id);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

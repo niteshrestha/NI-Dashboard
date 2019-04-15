@@ -23,9 +23,11 @@ namespace NIDashboard.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task Delete(int sectionId)
+        public async Task Delete(int Id)
         {
-            throw new NotImplementedException();
+            var section = GetByID(Id);
+            _context.Remove(section);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Section> GetAll()

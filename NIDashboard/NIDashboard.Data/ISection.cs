@@ -10,7 +10,7 @@ namespace NIDashboard.Data
         IEnumerable<Section> GetAll();
 
         Task Create(Section section);
-        Task Delete(int sectionId);
+        Task Delete(int Id);
         Task UpdateSectionTitle(int sectionId, string newSectionTitle);
         Task UpdateSectionDescription(int sectionId, string newSectionDescription);
     }
