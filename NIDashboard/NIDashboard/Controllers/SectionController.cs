@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -57,10 +58,11 @@ namespace NIDashboard.Controllers
             {
                 Id = post.Id,
                 Title = post.Title,
-                DatePosted = td.PostTimeDifference(post.Created),
+                DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
+                Ago = td.PostTimeDifference(post.Created),
                 AuthorName = post.User.FirstName + " " + post.User.LastName,
                 Section = BuildSectionListing(post)
-            });
+            }).OrderByDescending(post => post.DatePosted);
 
             var model = new SectionTopicModel
             {

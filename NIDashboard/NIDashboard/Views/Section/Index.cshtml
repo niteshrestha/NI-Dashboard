@@ -3,7 +3,7 @@
 }
 @model NIDashboard.Models.Section.SectionIndexModel
 
-<h1 class="display-4">Sections</h1>
+<h1>Sections</h1>
 
 @if (Model.Sections.Any())
 {
@@ -12,8 +12,8 @@
         <a asp-controller="Section" asp-action="Create" class="btn btn-outline-primary col-auto">
             <i class="fas fa-plus-square"></i> New Section
         </a>
+        <p/>
     }
-    <p />
     <table class="table table-hover" id="sectionIndexTable">
         <tbody>
             @foreach (var listingModel in Model.Sections)

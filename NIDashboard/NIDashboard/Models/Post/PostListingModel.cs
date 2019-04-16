@@ -8,6 +8,7 @@ namespace NIDashboard.Models.Post
         public string Title { get; set; }
         public string AuthorName { get; set; }
         public string DatePosted { get; set; }
+        public string Ago { get; set; }
 
         public SectionListingModel Section { get; set; }
     }

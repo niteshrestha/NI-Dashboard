@@ -6,31 +6,32 @@
 
 <div class="container">
     <div class="row">
-        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center">
-            <i class="fas fa-arrow-left"></i>
-        </a>
         <h2 class="col">
             @Model.Title
         </h2>
-        @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center justify-content-end">
+            Back to @Model.SectionName
+        </a>
+        @*@if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
         {
             <form class="col-auto align-self-center">
                 <div>
-                    <a class="btn btn-outline-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id" >
+                    <a class="btn btn-outline-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>
             </form>
-        }
+        }*@
     </div>
-</div>
-
-
-<div>
-    Author: @Model.AuthorName
-    Created: @Model.Created
-</div>
-
-<div>
-    @Model.PostContent
+    <div class="row">
+        <div class="col">
+            Author: @Model.AuthorName
+            Created: @Model.Created
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @Model.PostContent
+        </div>
+    </div>
 </div>

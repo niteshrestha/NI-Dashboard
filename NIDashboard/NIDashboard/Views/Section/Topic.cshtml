@@ -8,8 +8,8 @@
 @model NIDashboard.Models.Section.SectionTopicModel
 
 <div class="row">
-    <h1 class="display-4 col">
-        Announcements for @Model.Section.Title
+    <h1 class="col">
+        @Model.Section.Title
     </h1>
     @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
     {
@@ -30,8 +30,8 @@
         <a asp-controller="Post" asp-action="Create" asp-route-id=@Model.Section.Id class="btn btn-outline-primary col-auto">
             <i class="fas fa-plus-square"></i> New Announcement
         </a>
+        <p/>
     }
-    <p/>
     <table class="table table-hover" id="latestPostsTable">
         <tbody>
             @foreach (var post in Model.Posts)
@@ -49,7 +49,7 @@
                                     Posted by @post.AuthorName
                                 </div>
                                 <div class="postSubTitle">
-                                    @post.DatePosted
+                                    @post.Ago
                                 </div>
                             </div>
                         </a>
