@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
+using NIDashboard.Helpers;
 using NIDashboard.Models.Post;
 
 namespace NIDashboard.Controllers
@@ -16,12 +17,17 @@ namespace NIDashboard.Controllers
         private readonly IPost _postService;
         private readonly ISection _sectionService;
         private static UserManager<ApplicationUser> _userManager;
+        private readonly IPostFormatter _postFormatter;
 
-        public PostController(IPost postService, ISection sectionService, UserManager<ApplicationUser> userManager)
+        public PostController(IPost postService, 
+            ISection sectionService, 
+            UserManager<ApplicationUser> userManager, 
+            IPostFormatter postFormatter)
         {
             _postService = postService;
             _sectionService = sectionService;
             _userManager = userManager;
+            _postFormatter = postFormatter;
         }
 
         public IActionResult Index(int id)
@@ -32,7 +38,7 @@ namespace NIDashboard.Controllers
             {
                 Id = post.Id,
                 Title = post.Title,
-                PostContent = post.Content,
+                PostContent = _postFormatter.FormatContent(post.Content),
                 AuthorName = post.User.FirstName + " " + post.User.LastName,
                 Created = post.Created,
                 SectionName = post.Section.Title,

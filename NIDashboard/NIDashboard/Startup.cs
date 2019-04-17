@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NIDashboard.Data.Models;
 using NIDashboard.Service;
+using NIDashboard.Helpers;
 
 namespace NIDashboard
 {
@@ -48,6 +49,7 @@ namespace NIDashboard
 
             services.AddScoped<ISection, SectionService>();
             services.AddScoped<IPost, PostService>();
+            services.AddScoped<IPostFormatter, PostFormatter>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
