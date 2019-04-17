@@ -8,11 +8,11 @@
 <form asp-action="AddSection" method="post" id="createSectionForm">
     <div class="form-group">
         <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
+        <input asp-for="Title" placeholder="Title of Section" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+        <textarea asp-for="Description" placeholder="Write your description of this section." class="form-control"></textarea>
     </div>
     <button type="submit" id="createSectionBtn" class="btn btn-outline-primary">
         Create

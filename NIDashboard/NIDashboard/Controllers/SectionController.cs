@@ -16,10 +16,12 @@ namespace NIDashboard.Controllers
     public class SectionController : Controller
     {
         private readonly ISection _sectionService;
+        private readonly IPost _postService;
 
-        public SectionController(ISection sectionService)
+        public SectionController(ISection sectionService, IPost postService)
         {
             _sectionService = sectionService;
+            _postService = postService;
         }
 
         public IActionResult Index()
@@ -75,6 +77,13 @@ namespace NIDashboard.Controllers
 
         public async Task<IActionResult> Delete(int Id)
         {
+            var section = _sectionService.GetByID(Id);
+
+            foreach (var posts in section.Posts.ToList())
+            {
+                await _postService.Delete(posts.Id);
+            }
+
             await _sectionService.Delete(Id);
             return RedirectToAction("Index", "Section");
         }
