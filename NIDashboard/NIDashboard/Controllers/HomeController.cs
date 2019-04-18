@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
+using NIDashboard.Helpers;
 using NIDashboard.Models;
 using NIDashboard.Models.Home;
 using NIDashboard.Models.Post;
 using NIDashboard.Models.Section;
-using NIDashboard.Service;
 
 namespace NIDashboard.Controllers
 {

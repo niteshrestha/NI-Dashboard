@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace NIDashboard.Models.Section
+﻿namespace NIDashboard.Models.Section
 {
     public class AddSectionModel
     {

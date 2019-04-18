@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace NIDashboard.Service
+namespace NIDashboard.Helpers
 {
     public class TimeDifference
     {
