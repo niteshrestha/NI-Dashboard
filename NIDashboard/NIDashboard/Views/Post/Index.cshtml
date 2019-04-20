@@ -6,32 +6,28 @@
 
 <div class="container">
     <div class="row">
-        <h2 class="col">
+        <h2 class="col text-primary">
             @Model.Title
         </h2>
-        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center justify-content-end">
+        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center justify-content-end btnCustom">
             Back to @Model.SectionName
         </a>
-        @*@if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+    </div>
+    <div class="row">
+        <div class="col secondaryContent">
+            Posted by <strong>@Model.AuthorName</strong> on @Model.Created
+        </div>
+    </div><hr />
+    <p class="postContent">
+        @Html.Raw(@Model.PostContent)
+    </p>
+    <hr />
+    <div class="row justify-content-end">
+        @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
         {
-            <form class="col-auto align-self-center">
-                <div>
-                    <a class="btn btn-outline-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-            </form>
-        }*@
-    </div>
-    <div class="row">
-        <div class="col">
-            Author: @Model.AuthorName
-            Created: @Model.Created
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            @Html.Raw(@Model.PostContent)
-        </div>
+            <a class="col-auto btn btn-outline-danger btnCustom" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+        }
     </div>
 </div>

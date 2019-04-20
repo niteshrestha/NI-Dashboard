@@ -55,20 +55,47 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.sectionBadge {
-    margin-left: 12px;
-}
-
 .postTitle {
     font-size: 20px;
-    font-family: 'Montserrat';
+    font-family: 'Fira Sans';
 }
 
 .postSubTitle {
-    font-family: 'Montserrat';
+    font-family: 'Fira Mono';
     font-size: 12px;
+    color: #aaa;
 }
 
-h1, h2, h3 {
-    font-family: 'Montserrat';
+.postContent {
+    font-size: 16px;
+    font-family: 'Fira Sans';
+}
+
+h1, h2, h3, .btnCustom {
+    font-family: 'Fira Sans';
+}
+
+.postContainer {
+    border-radius: 5px;
+}
+
+.sectionContainer {
+    padding: 12px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    border: 1px solid;
+    width: 250px;
+    height:200px;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    font-family: 'Fira Sans';
+}
+
+.sectionSubTitle, .secondaryContent {
+    font-size: 16px;
+    font-family: 'Fira Mono';
+    color: #aaa;
 }

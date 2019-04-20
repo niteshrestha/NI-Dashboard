@@ -32,27 +32,28 @@
         </a>
         <p/>
     }
-    <table class="table table-hover" id="latestPostsTable">
+    <table class="table table-hover table-borderless" id="latestPostsTable">
         <tbody>
             @foreach (var post in Model.Posts)
             {
                 <tr>
-                    <td>
-                        <a class="text-decoration-none" asp-controller="Post" asp-action="Index" asp-route-id=@post.Id>
-                            <div class="row">
-                                <div class="col-md-auto postTitle">
+                    <td class="postContainer">
+                        
+                        <div class="row">
+                            <div class="col-md-auto postTitle">
+                                <a class="text-decoration-none" asp-controller="Post" asp-action="Index" asp-route-id=@post.Id>
                                     @post.Title
-                                </div>
+                                </a>
                             </div>
-                            <div class="row">
-                                <div class=" col-auto postSubTitle">
-                                    Posted by @post.AuthorName
-                                </div>
-                                <div class="postSubTitle">
-                                    @post.Ago
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto postSubTitle">
+                                Posted by @post.AuthorName
                             </div>
-                        </a>
+                            <div class="postSubTitle">
+                                @post.Ago
+                            </div>
+                        </div>
                     </td>
                 </tr>
             }
@@ -61,7 +62,7 @@
 }
 else
 {
-    <div class="noPost">
+    <div>
         <h3>
             Wow such empty! <br />
             Why not
