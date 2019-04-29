@@ -33,9 +33,15 @@ namespace NIDashboard
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
+
+            var host = Configuration["DBHOST"] ?? "localhost";
+            var password = Configuration["DBPASSWORD"] ?? "Mi(r0s0ft";
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer($"Server={host};User ID=SA;Password={password};Database=NIDashboard;MultipleActiveResultSets=true"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultTokenProviders()
@@ -50,7 +56,7 @@ namespace NIDashboard
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext _context)
         {
             if (env.IsDevelopment())
             {
@@ -69,6 +75,8 @@ namespace NIDashboard
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            _context.Database.Migrate();
 
             app.UseMvc(routes =>
             {

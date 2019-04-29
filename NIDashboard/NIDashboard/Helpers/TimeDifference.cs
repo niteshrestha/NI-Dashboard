@@ -12,37 +12,37 @@ namespace NIDashboard.Helpers
             {
                 if (ts.TotalMinutes < 1)
                 {
-                    result = "now.";
+                    result = "now";
                 }
                 else if ((int)ts.TotalMinutes == 1)
                 {
-                    result = "1 minute ago.";
+                    result = "1 minute ago";
                 }
                 else
                 {
-                    result = ts.Minutes.ToString() + " minutes ago.";
+                    result = ts.Minutes.ToString() + " minutes ago";
                 }
             }
             else if (ts.TotalHours < 24)
             {
                 if ((int)ts.TotalHours == 1)
                 {
-                    result = "1 hour ago.";
+                    result = "1 hour ago";
                 }
                 else
                 {
-                    result = ts.Hours.ToString() + " hours ago.";
+                    result = ts.Hours.ToString() + " hours ago";
                 }
             }
             else
             {
                 if ((int)ts.TotalDays == 1)
                 {
-                    result = "1 day ago.";
+                    result = "1 day ago";
                 }
                 else
                 {
-                    result = ((int)ts.TotalDays).ToString() + " days ago.";
+                    result = ((int)ts.TotalDays).ToString() + " days ago";
                 }
             }
 
