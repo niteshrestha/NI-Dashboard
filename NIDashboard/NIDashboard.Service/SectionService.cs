@@ -45,15 +45,5 @@ namespace NIDashboard.Service
 
             return section;
         }
-
-        public Task UpdateSectionDescription(int sectionId, string newSectionDescription)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateSectionTitle(int sectionId, string newSectionTitle)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

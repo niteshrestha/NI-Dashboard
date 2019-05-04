@@ -6,12 +6,6 @@ namespace NIDashboard.Helpers
     {
         public string FormatContent(string postContent)
         {
-            var postWithSpaces = TransformSpaces(postContent);
-            return postWithSpaces;
-        }
-
-        private string TransformSpaces(string postContent)
-        {
             return postContent.Replace(Environment.NewLine, "<br/>");
         }
     }

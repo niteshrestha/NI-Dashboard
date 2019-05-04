@@ -11,7 +11,5 @@ namespace NIDashboard.Data
 
         Task Create(Section section);
         Task Delete(int Id);
-        Task UpdateSectionTitle(int sectionId, string newSectionTitle);
-        Task UpdateSectionDescription(int sectionId, string newSectionDescription);
     }
 }

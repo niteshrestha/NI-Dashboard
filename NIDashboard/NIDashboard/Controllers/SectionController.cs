@@ -87,6 +87,13 @@ namespace NIDashboard.Controllers
             return RedirectToAction("Index", "Section");
         }
 
+        private SectionListingModel BuildSectionListing(Post post)
+        {
+            var section = post.Section;
+
+            return BuildSectionListing(section);
+        }
+
         private SectionListingModel BuildSectionListing(Section section)
         {
             return new SectionListingModel
@@ -95,13 +102,6 @@ namespace NIDashboard.Controllers
                 Title = section.Title,
                 Description = section.Description
             };
-        }
-
-        private SectionListingModel BuildSectionListing(Post post)
-        {
-            var section = post.Section;
-
-            return BuildSectionListing(section);
         }
 
         [HttpPost]

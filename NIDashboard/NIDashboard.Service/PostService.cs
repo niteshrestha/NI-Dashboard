@@ -54,10 +54,5 @@ namespace NIDashboard.Service
         {
             return GetAll().OrderByDescending(post => post.Created).Take(n);
         }
-
-        public IEnumerable<Post> GetPostBySection(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

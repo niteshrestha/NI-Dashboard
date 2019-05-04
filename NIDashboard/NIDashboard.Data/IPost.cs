@@ -8,7 +8,6 @@ namespace NIDashboard.Data
     {
         Post GetById(int id);
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetPostBySection(int id);
         IEnumerable<Post> GetLatestPost(int n);
 
         Task Add(Post post);
