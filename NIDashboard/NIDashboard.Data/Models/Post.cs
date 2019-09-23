@@ -8,6 +8,7 @@ namespace NIDashboard.Data.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime Created { get; set; }
+        public string Tags { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Section Section { get; set; }

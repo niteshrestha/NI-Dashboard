@@ -3,7 +3,9 @@
 }
 
 @model NIDashboard.Models.Post.NewPostModel
-
+<head>
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+</head>
 <h1>New Announcement for @Model.SectionName</h1>
 
 <form asp-action="AddPost" method="post" id="addPostForm">
@@ -13,7 +15,21 @@
     </div>
     <div class="form-group">
         <label asp-for="Content"></label>
-        <textarea asp-for="Content" rows="10" placeholder="Write your announcement here." class="form-control"></textarea>
+        <textarea asp-for="Content" placeholder="Write your announcement here." class="form-control" id="editor"></textarea>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    ckfinder: {
+                        uploadUrl: '/Post/UploadImage'
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    </div>
+    <div class="form-group">
+
     </div>
     <button type="submit" id="submitPostBtn" class="btn btn-outline-primary">
         Submit Post

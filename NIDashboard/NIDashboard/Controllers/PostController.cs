@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using NIDashboard.Helpers;
@@ -16,16 +20,19 @@ namespace NIDashboard.Controllers
         private readonly ISection _sectionService;
         private static UserManager<ApplicationUser> _userManager;
         private readonly IPostFormatter _postFormatter;
+        private readonly IHostingEnvironment _environment;
 
         public PostController(IPost postService, 
             ISection sectionService, 
             UserManager<ApplicationUser> userManager, 
-            IPostFormatter postFormatter)
+            IPostFormatter postFormatter,
+            IHostingEnvironment environment)
         {
             _postService = postService;
             _sectionService = sectionService;
             _userManager = userManager;
             _postFormatter = postFormatter;
+            _environment = environment;
         }
 
         public IActionResult Index(int id)
@@ -91,6 +98,33 @@ namespace NIDashboard.Controllers
                 User = user,
                 Section = section
             };
+        }
+
+        [HttpPost]
+        public ActionResult UploadImage(IFormFile upload)
+        {
+            string fileName = "";
+            string url = "";
+            if (upload.Length <= 0)
+            {
+                return null;
+            }
+
+            var file = upload;
+            var uploads = Path.Combine(_environment.WebRootPath, "post");
+            if (file.Length > 0)
+            {
+                fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
+                using(var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                {
+                    file.CopyToAsync(fileStream).Wait();
+                }
+                url = $"{"/post/"}{fileName}";
+            }
+
+            var successMessage = "image is uploaded successfully";
+            dynamic success = JsonConvert.DeserializeObject("{ 'uploaded': 1,'fileName': \"" + fileName + "\",'url': \"" + url + "\", 'error': { 'message': \"" + successMessage + "\"}}");
+            return Json(success);
         }
     }
 }

@@ -19,4 +19,10 @@
     <ProjectReference Include="..\NIDashboard.Service\NIDashboard.Service.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\banners\" />
+    <Folder Include="wwwroot\post\" />
+  </ItemGroup>
+
 </Project>

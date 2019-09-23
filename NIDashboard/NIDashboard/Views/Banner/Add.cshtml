@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Add Banner";
+}
+
+@model NIDashboard.Models.Banner.AddBannerModel
+
+<form asp-action="AddBanner" method="post" enctype="multipart/form-data" asp-antiforgery="true">
+    <div class="form-group">
+        <input asp-for="Name" type="file" />
+    </div>
+    <button type="submit" class="btn btn-outline-primary" id="addImageBtn">
+        Upload
+    </button>
+</form>

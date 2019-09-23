@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Banner";
+}
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/css/nivo-slider.css" />
+        <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="~/js/jquery.nivo.slider.js"></script>
+        <script type="text/javascript" src="~/js/jquery.nivo.slider.pack.js"></script>
+    </head>
+
+@if (User.IsInRole("HOD"))
+{
+    <div class="row">
+        <div class="col-1"><a class="btn btn-outline-primary" asp-area="" asp-controller="Banner" asp-action="Add">Add</a></div>
+        <div class="col-1"><a class="btn btn-outline-primary" asp-area="" asp-controller="Banner" asp-action="List">List</a></div>
+        <div class="col-1"><a class="btn btn-outline-primary" asp-area="" asp-controller="Banner" asp-action="Setting">Setting</a></div>
+    </div>
+}
+
+<div class="row">
+    <div id="slider" class="nivoSlider"></div>
+    <script type="text/javascript" src="~/js/sliderRender.js"></script>
+</div>

@@ -45,6 +45,8 @@ namespace NIDashboard
             services.AddScoped<ISection, SectionService>();
             services.AddScoped<IPost, PostService>();
             services.AddScoped<IPostFormatter, PostFormatter>();
+            services.AddScoped<IBanner, BannerService>();
+            services.AddScoped<ISliderConfig, SliderConfigService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

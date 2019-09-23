@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Banners";
+}
+
+@model NIDashboard.Models.Banner.BannerIndexModel
+
+<h1>Banners</h1>
+
+<table class="table table-borderless" id="bannerTable">
+    <tbody>
+        @foreach (var banner in Model.Banners)
+        {
+            <tr>
+                <td class="bannerContainer">
+
+                    <div class="row">
+                        <div>
+                            <img height="200" width="350" src="~/banners/@banner.Name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a class="col-auto btn btn-outline-danger btnCustom" asp-controller="Banner" asp-action="Delete" asp-route-id="@banner.ID">
+                            <i class="fas fa-trash"></i>Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
