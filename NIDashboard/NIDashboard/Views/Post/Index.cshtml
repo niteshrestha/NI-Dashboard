@@ -21,6 +21,12 @@
     <p class="postContent">
         @Html.Raw(@Model.PostContent)
     </p>
+    <p>
+        Tags: @foreach(var tag in Model.Tags)
+        {
+            <a href="#" class="badge badge-pill badge-info">@tag</a>
+        }
+    </p>
     <hr />
     <div class="row justify-content-end">
         @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))

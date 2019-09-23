@@ -38,12 +38,14 @@ namespace NIDashboard.Controllers
         public IActionResult Index(int id)
         {
             var post = _postService.GetById(id);
-
+            string tags = post.Tags;
+            string[] stringTags = tags.Split(',');
             var model = new PostIndexModel
             {
                 Id = post.Id,
                 Title = post.Title,
                 PostContent = _postFormatter.FormatContent(post.Content),
+                Tags = stringTags,
                 AuthorName = post.User.FirstName + " " + post.User.LastName,
                 Created = post.Created,
                 SectionName = post.Section.Title,
@@ -94,6 +96,7 @@ namespace NIDashboard.Controllers
             {
                 Title = model.Title,
                 Content = model.Content,
+                Tags = model.Tags,
                 Created = DateTime.Now,
                 User = user,
                 Section = section
