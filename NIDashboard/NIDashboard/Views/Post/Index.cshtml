@@ -4,63 +4,62 @@
 
 @model NIDashboard.Models.Post.PostIndexModel
 
-<div class="container">
-    <div class="row">
-        <h2 class="col text-primary">
-            @Model.Title
-        </h2>
-        <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center justify-content-end btnCustom">
-            Back to @Model.SectionName
-        </a>
+<div class="row">
+    <h2 class="col text-primary">
+        @Model.Title
+    </h2>
+    <a asp-controller="Section" asp-action="Topic" asp-route-id=@Model.SectionId class="btn btn-outline-primary col-auto align-self-center justify-content-end btnCustom">
+        Back to @Model.SectionName
+    </a>
+</div>
+<div class="row">
+    <div class="col secondaryContent">
+        Posted by <strong>@Model.AuthorName</strong> on @Model.Created
     </div>
-    <div class="row">
-        <div class="col secondaryContent">
-            Posted by <strong>@Model.AuthorName</strong> on @Model.Created
-        </div>
-    </div><hr />
-    <p class="postContent">
-        @Html.Raw(@Model.PostContent)
-    </p>
-    <p>
-        Tags: @foreach(var tag in Model.Tags)
-        {
-            <a href="#" class="badge badge-pill badge-info">@tag</a>
-        }
-    </p>
-    <hr />
-    <div class="row justify-content-end">
-        @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
-        {
-            <button type="button" class="col-auto btn btn-outline-danger btnCustom" data-toggle="modal" data-target="#deletePost">
-                <i class="fas fa-trash"></i> Delete
-            </button>
+</div>
+<hr />
+<p class="postContent">
+    @Html.Raw(@Model.PostContent)
+</p>
+<p>
+    Tags: @foreach (var tag in Model.Tags)
+    {
+        <a href="/Search/Result?searchQuery=@tag&searchTag=true&searchContent=false" class="badge badge-pill badge-info">@tag</a>
+    }
+</p>
+<hr />
+<div class="row justify-content-end">
+    @if (User.IsInRole("HOD") || User.IsInRole("Teacher"))
+    {
+        <button type="button" class="col-auto btn btn-outline-danger btnCustom" data-toggle="modal" data-target="#deletePost">
+            <i class="fas fa-trash"></i> Delete
+        </button>
 
-            <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deletePostLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        @*Header*@
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deletePostLabel">
-                                Delete Post
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @*Body*@
-                        <div class="modal-body">
-                            Are you sure you want to delete this post?
-                        </div>
-                        @*Footer*@
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                            <a class="col-auto btn btn-outline-danger btnCustom" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id">
-                                Delete
-                            </a>
-                        </div>
+        <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deletePostLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    @*Header*@
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletePostLabel">
+                            Delete Post
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @*Body*@
+                    <div class="modal-body">
+                        Are you sure you want to delete this post?
+                    </div>
+                    @*Footer*@
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <a class="col-auto btn btn-outline-danger btnCustom" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id">
+                            Delete
+                        </a>
                     </div>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>

@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Search";
+}
+@model NIDashboard.Models.Search.SearchResultModel
+
+<div class="row">
+    <div class="col">
+        <form asp-controller="Search" asp-action="Search" class="row">
+            <div class="input-group">
+                <input asp-for="SearchQuery" type="text" placeholder="Search..." class="form-control" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br />
+    </div>
+</div>
+
+<div class="row">
+    <h1>Results for: @Model.SearchQuery</h1>
+</div>
+
+<div class="row">
+    @if (Model.Posts.Any())
+    {
+        <table class="table table-hover table-borderless" id="latestPostsTable">
+            <tbody>
+                @foreach (var post in Model.Posts)
+                {
+                    <tr>
+                        <td class="postContainer">
+                            <div class="row">
+                                <div class="col-auto postTitle">
+                                    <a class="text-decoration-none" asp-controller="Post" asp-action="Index" asp-route-id=@post.Id>
+                                        @post.Title
+                                    </a>
+                                </div>
+                                <a class="align-self-center" text-decoration-none" asp-controller="Section" asp-action="Topic" asp-route-id="@post.Section.Id">
+                                    <div class="badge badge-pill badge-primary col-auto">
+                                        @post.Section.Title
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <div class=" col-auto postSubTitle">
+                                    Posted by @post.AuthorName @post.DatePosted
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (@Model.EmptySearchResults)
+    {
+        <div class="noPosts">
+            <h3>
+                No search results found for @Model.SearchQuery! <br />
+            </h3>
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function clearThis(target) {
+            target.value = "";
+        }
+    </script>
+}

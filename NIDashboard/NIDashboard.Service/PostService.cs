@@ -54,5 +54,37 @@ namespace NIDashboard.Service
         {
             return GetAll().OrderByDescending(post => post.Created).Take(n);
         }
+
+        public IEnumerable<Post> Search(string searchQuery)
+        {
+            var query = searchQuery.ToLower();
+
+            return _context.Posts
+                .Include(post => post.User)
+                .Include(post => post.Section)
+                .Where(post => post.Tags.ToLower().Contains(query)
+                || post.Content.ToLower().Contains(query)
+                || post.Title.ToLower().Contains(query));
+        }
+
+        public IEnumerable<Post> SearchByTag(string searchQuery)
+        {
+            var query = searchQuery.ToLower();
+
+            return _context.Posts
+                .Include(post => post.User)
+                .Include(post => post.Section)
+                .Where(post => post.Tags.ToLower().Contains(query));
+        }
+
+        public IEnumerable<Post> SearchByContent(string searchQuery)
+        {
+            var query = searchQuery.ToLower();
+
+            return _context.Posts
+                .Include(post => post.User)
+                .Include(post => post.Section)
+                .Where(post => post.Content.ToLower().Contains(query));
+        }
     }
 }

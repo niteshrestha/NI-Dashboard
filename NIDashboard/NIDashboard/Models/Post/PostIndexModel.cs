@@ -12,5 +12,6 @@ namespace NIDashboard.Models.Post
         public DateTime Created { get; set; }
         public string SectionName { get; set; }
         public int SectionId { get; set; }
+        public string SearchQuery { get; set; }
     }
 }
