@@ -34,7 +34,7 @@ namespace NIDashboard.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Post> GetAll()
+        public IQueryable<Post> GetAll()
         {
             return _context.Posts
                 .Include(post => post.User)
@@ -50,7 +50,7 @@ namespace NIDashboard.Service
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Post> GetLatestPost(int n)
+        public IQueryable<Post> GetLatestPost(int n)
         {
             return GetAll().OrderByDescending(post => post.Created).Take(n);
         }

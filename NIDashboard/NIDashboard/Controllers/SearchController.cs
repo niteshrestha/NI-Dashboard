@@ -26,7 +26,7 @@ namespace NIDashboard.Controllers
         }
         public IActionResult Result(string searchQuery, bool searchTag, bool searchContent)
         {
-            List<Post> posts = null;
+            IEnumerable<Post> posts = null;
 
             if (searchTag)
             {
