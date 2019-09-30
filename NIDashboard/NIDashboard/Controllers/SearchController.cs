@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using NIDashboard.Helpers;
 using NIDashboard.Models.Post;
 using NIDashboard.Models.Search;
 using NIDashboard.Models.Section;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace NIDashboard.Controllers
 {
@@ -66,13 +64,13 @@ namespace NIDashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string searchQuery, string searchTag, string searchContent)
+        public ActionResult Search(string searchQuery, bool searchTag, bool searchContent)
         {
             if (string.IsNullOrEmpty(searchQuery))
             {
                 return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Result", new { searchQuery, searchTag, searchContent});
+            return RedirectToAction("Result", new { searchQuery, searchTag, searchContent });
         }
 
         private SectionListingModel BuildSectionListing(Post post)

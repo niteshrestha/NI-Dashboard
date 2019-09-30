@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +8,9 @@ using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using NIDashboard.Helpers;
 using NIDashboard.Models.Post;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace NIDashboard.Controllers
 {
@@ -22,9 +22,9 @@ namespace NIDashboard.Controllers
         private readonly IPostFormatter _postFormatter;
         private readonly IHostingEnvironment _environment;
 
-        public PostController(IPost postService, 
-            ISection sectionService, 
-            UserManager<ApplicationUser> userManager, 
+        public PostController(IPost postService,
+            ISection sectionService,
+            UserManager<ApplicationUser> userManager,
             IPostFormatter postFormatter,
             IHostingEnvironment environment)
         {
@@ -55,7 +55,7 @@ namespace NIDashboard.Controllers
             return View(model);
         }
 
-        [Authorize(Roles ="HOD, Teacher")]
+        [Authorize(Roles = "HOD, Teacher")]
         public IActionResult Create(int id)
         {
             //id is SectionId
@@ -71,7 +71,7 @@ namespace NIDashboard.Controllers
             return View(model);
         }
 
-        [Authorize(Roles ="HOD, Teacher")]
+        [Authorize(Roles = "HOD, Teacher")]
         public async Task<IActionResult> Delete(int Id)
         {
             await _postService.Delete(Id);
@@ -118,7 +118,7 @@ namespace NIDashboard.Controllers
             if (file.Length > 0)
             {
                 fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
-                using(var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
                 {
                     file.CopyToAsync(fileStream).Wait();
                 }

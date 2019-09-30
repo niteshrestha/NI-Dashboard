@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using NIDashboard.Helpers;
 using NIDashboard.Models.Post;
 using NIDashboard.Models.Section;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NIDashboard.Controllers
 {
@@ -40,7 +40,7 @@ namespace NIDashboard.Controllers
             return View(model);
         }
 
-        [Authorize(Roles ="HOD, Teacher")]
+        [Authorize(Roles = "HOD, Teacher")]
         public IActionResult Create()
         {
             var model = new AddSectionModel();

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using NIDashboard.Models.Banner;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NIDashboard.Controllers
 {
@@ -84,14 +84,14 @@ namespace NIDashboard.Controllers
 
                 foreach (var Image in files)
                 {
-                    if (Image!=null && Image.Length>0)
+                    if (Image != null && Image.Length > 0)
                     {
                         var file = Image;
                         var uploads = Path.Combine(_environment.WebRootPath, "banners");
                         if (file.Length > 0)
                         {
                             var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
-                            using (var fileStream = new FileStream(Path.Combine(uploads,fileName), FileMode.Create))
+                            using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
                             {
                                 await file.CopyToAsync(fileStream);
                             }

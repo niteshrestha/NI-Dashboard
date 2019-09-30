@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NIDashboard.Data;
+﻿using NIDashboard.Data;
 using NIDashboard.Data.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NIDashboard.Service

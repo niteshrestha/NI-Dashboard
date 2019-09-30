@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NIDashboard.Data;
+using System;
 
 namespace NIDashboard
 {
@@ -22,7 +22,7 @@ namespace NIDashboard
                     var serviceProvider = services.GetRequiredService<IServiceProvider>();
                     var configuration = services.GetRequiredService<IConfiguration>();
                     Seed.CreateRoles(serviceProvider, configuration).Wait();
-                    
+
                 }
                 catch (Exception exception)
                 {

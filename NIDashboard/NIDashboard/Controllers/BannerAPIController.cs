@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
-using NIDashboard.Models.Banner;
-using NIDashboard.Service;
+using System.Collections.Generic;
 
 namespace NIDashboard.Controllers
 {

@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NIDashboard.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NIDashboard.Data;
 using NIDashboard.Data.Models;
-using NIDashboard.Service;
 using NIDashboard.Helpers;
+using NIDashboard.Service;
 
 namespace NIDashboard
 {
