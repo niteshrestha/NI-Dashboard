@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,25 +28,14 @@ namespace NIDashboard.Service
             _context.Database.ExecuteSqlCommand($"spDeletePost {id}");
         }
 
-        public IQueryable<Post> GetAll()
+        public SpPostDetail GetById(string id)
         {
-            return _context.Posts
-                .Include(post => post.User)
-                .Include(post => post.Section);
+            return _context.SpPostDetails.FromSql($"spGetPostDetail {id}").FirstOrDefault();
         }
 
-        public Post GetById(string id)
+        public IEnumerable<SpLatestPost> GetLatestPost(int n)
         {
-            return _context.Posts
-                .Where(post => post.Id == id)
-                .Include(post => post.User)
-                .Include(post => post.Section)
-                .FirstOrDefault();
-        }
-
-        public IQueryable<Post> GetLatestPost(int n)
-        {
-            return GetAll().OrderByDescending(post => post.Created).Take(n);
+            return _context.SpLatestPosts.FromSql($"spGetLatestPost {n}").ToList();
         }
 
         public IEnumerable<Post> Search(string searchQuery)

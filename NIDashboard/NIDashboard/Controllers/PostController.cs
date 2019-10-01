@@ -46,10 +46,10 @@ namespace NIDashboard.Controllers
                 Title = post.Title,
                 PostContent = _postFormatter.FormatContent(post.Content),
                 Tags = stringTags,
-                AuthorName = post.User.FirstName + " " + post.User.LastName,
+                AuthorName = string.Format("{0} {1}", post.FirstName, post.LastName),
                 Created = post.Created,
-                SectionName = post.Section.Title,
-                SectionId = post.Section.Id
+                SectionName = post.SectionTitle,
+                SectionId = post.SectionId
             };
 
             return View(model);
@@ -64,8 +64,7 @@ namespace NIDashboard.Controllers
             var model = new NewPostModel
             {
                 SectionName = section.Title,
-                SectionId = section.Id,
-                AuthorName = User.Identity.Name
+                SectionId = section.Id
             };
 
             return View(model);

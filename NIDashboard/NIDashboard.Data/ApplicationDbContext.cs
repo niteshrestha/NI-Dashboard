@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 
 namespace NIDashboard.Data
 {
@@ -16,5 +17,7 @@ namespace NIDashboard.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<SliderConfig> SliderConfigs { get; set; }
+        public virtual DbSet<SpLatestPost> SpLatestPosts { get; set; }
+        public virtual DbSet<SpPostDetail> SpPostDetails { get; set; }
     }
 }

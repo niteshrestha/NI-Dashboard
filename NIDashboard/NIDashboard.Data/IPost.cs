@@ -1,4 +1,5 @@
 ﻿using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,8 @@ namespace NIDashboard.Data
 {
     public interface IPost
     {
-        Post GetById(string id);
-        IQueryable<Post> GetAll();
-        IQueryable<Post> GetLatestPost(int n);
+        SpPostDetail GetById(string id);
+        IEnumerable<SpLatestPost> GetLatestPost(int n);
         IEnumerable<Post> Search(string searchQuery);
         IEnumerable<Post> SearchByTag(string searchQuery);
         IEnumerable<Post> SearchByContent(string searchQuery);

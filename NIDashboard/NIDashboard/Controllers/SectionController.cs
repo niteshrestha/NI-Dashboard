@@ -107,7 +107,7 @@ namespace NIDashboard.Controllers
         [HttpPost]
         public async Task<IActionResult> AddSection(AddSectionModel model)
         {
-            var section = new Data.Models.Section()
+            var section = new Section()
             {
                 Title = model.Title,
                 Description = model.Description

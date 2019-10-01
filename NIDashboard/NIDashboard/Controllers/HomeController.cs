@@ -25,17 +25,6 @@ namespace NIDashboard.Controllers
             return View(model);
         }
 
-        private SectionListingModel GetSectionListingForPost(Post post)
-        {
-            var section = post.Section;
-
-            return new SectionListingModel
-            {
-                Title = section.Title,
-                Id = section.Id
-            };
-        }
-
         private HomeIndexModel BuildHomeIndexModel()
         {
             var latestPost = _postService.GetLatestPost(10);
@@ -45,9 +34,10 @@ namespace NIDashboard.Controllers
             {
                 Id = post.Id,
                 Title = post.Title,
-                AuthorName = post.User.FirstName + " " + post.User.LastName,
+                AuthorName = string.Format("{0} {1}", post.FirstName, post.LastName),
                 DatePosted = td.PostTimeDifference(post.Created),
-                Section = GetSectionListingForPost(post)
+                SectionId = post.SectionId,
+                SectionTitle = post.SectionTitle
             });
 
             return new HomeIndexModel
