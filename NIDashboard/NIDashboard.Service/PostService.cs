@@ -18,20 +18,13 @@ namespace NIDashboard.Service
 
         public async Task Add(Post post)
         {
-            _context.Add(post);
-            await _context.SaveChangesAsync();
+            _context.Database.ExecuteSqlCommand(
+                $"spCreatePost {post.Id}, {post.Title}, {post.Content}, {post.Created}, {post.Tags}, {post.User.Id}, {post.Section.Id}");
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(string id)
         {
-            var post = GetById(id);
-            _context.Remove(post);
-            await _context.SaveChangesAsync();
-        }
-
-        public Task EditPost(int id, string newContent)
-        {
-            throw new NotImplementedException();
+            _context.Database.ExecuteSqlCommand($"spDeletePost {id}");
         }
 
         public IQueryable<Post> GetAll()
@@ -41,7 +34,7 @@ namespace NIDashboard.Service
                 .Include(post => post.Section);
         }
 
-        public Post GetById(int id)
+        public Post GetById(string id)
         {
             return _context.Posts
                 .Where(post => post.Id == id)

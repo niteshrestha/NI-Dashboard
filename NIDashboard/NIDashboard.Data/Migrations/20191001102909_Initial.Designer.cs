@@ -10,8 +10,8 @@ using NIDashboard.Data;
 namespace NIDashboard.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190923052839_Init")]
-    partial class Init
+    [Migration("20191001102909_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -202,9 +202,8 @@ namespace NIDashboard.Data.Migrations
 
             modelBuilder.Entity("NIDashboard.Data.Models.Post", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content");
 

@@ -35,7 +35,7 @@ namespace NIDashboard.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(string id)
         {
             var post = _postService.GetById(id);
             string tags = post.Tags;
@@ -72,7 +72,7 @@ namespace NIDashboard.Controllers
         }
 
         [Authorize(Roles = "HOD, Teacher")]
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> Delete(string Id)
         {
             await _postService.Delete(Id);
             return RedirectToAction("Index", "Home");
@@ -94,6 +94,7 @@ namespace NIDashboard.Controllers
             var section = _sectionService.GetByID(model.SectionId);
             return new Post
             {
+                Id = Guid.NewGuid().ToString(),
                 Title = model.Title,
                 Content = model.Content,
                 Tags = model.Tags,

@@ -17,21 +17,18 @@ namespace NIDashboard.Service
 
         public async Task Create(Section section)
         {
-            _context.Add(section);
-            await _context.SaveChangesAsync();
+            _context.Database.ExecuteSqlCommand("spCreateSection @p0, @p1",
+                parameters: new[] { section.Title, section.Description });
         }
 
         public async Task Delete(int Id)
         {
-            var section = GetByID(Id);
-            _context.Remove(section);
-            await _context.SaveChangesAsync();
+            _context.Database.ExecuteSqlCommand("spDeleteSection @p0", Id);
         }
 
         public IEnumerable<Section> GetAll()
         {
-            return _context.Sections
-                .Include(section => section.Posts);
+            return _context.Sections.FromSql("spGetSections");
         }
 
         public Section GetByID(int id)

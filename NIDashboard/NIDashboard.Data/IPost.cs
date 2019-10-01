@@ -7,7 +7,7 @@ namespace NIDashboard.Data
 {
     public interface IPost
     {
-        Post GetById(int id);
+        Post GetById(string id);
         IQueryable<Post> GetAll();
         IQueryable<Post> GetLatestPost(int n);
         IEnumerable<Post> Search(string searchQuery);
@@ -15,7 +15,6 @@ namespace NIDashboard.Data
         IEnumerable<Post> SearchByContent(string searchQuery);
 
         Task Add(Post post);
-        Task Delete(int id);
-        Task EditPost(int id, string newContent);
+        Task Delete(string id);
     }
 }
