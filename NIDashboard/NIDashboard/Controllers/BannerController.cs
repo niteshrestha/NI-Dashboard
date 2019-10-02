@@ -56,16 +56,20 @@ namespace NIDashboard.Controllers
         [Authorize(Roles = "HOD")]
         public IActionResult Setting()
         {
+            var model = new SliderConfig();
             var config = _sliderConfigService.GetSliderConfig();
-            var model = new SliderConfig
+            if (config!= null)
             {
-                Effect = config.Effect,
-                Slices = config.Slices,
-                BoxCols = config.BoxCols,
-                BoxRows = config.BoxRows,
-                AnimSpeed = config.AnimSpeed,
-                PauseTime = config.PauseTime
-            };
+                model = new SliderConfig
+                {
+                    Effect = config.Effect,
+                    Slices = config.Slices,
+                    BoxCols = config.BoxCols,
+                    BoxRows = config.BoxRows,
+                    AnimSpeed = config.AnimSpeed,
+                    PauseTime = config.PauseTime
+                };
+            }
             return View(model);
         }
         [Authorize(Roles = "HOD")]

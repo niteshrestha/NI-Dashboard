@@ -20,13 +20,15 @@ namespace NIDashboard.Service
 
         public async Task Save(SliderConfig config)
         {
-            var sliderConfig = GetSliderConfig();
-            sliderConfig.Effect = config.Effect;
-            sliderConfig.Slices = config.Slices;
-            sliderConfig.BoxCols = config.BoxCols;
-            sliderConfig.BoxRows = config.BoxRows;
-            sliderConfig.AnimSpeed = config.AnimSpeed;
-            sliderConfig.PauseTime = config.PauseTime;
+            var sliderConfig = new SliderConfig
+            {
+                Effect = config.Effect,
+                Slices = config.Slices,
+                BoxCols = config.BoxCols,
+                BoxRows = config.BoxRows,
+                AnimSpeed = config.AnimSpeed,
+                PauseTime = config.PauseTime
+            };
             _context.Update(sliderConfig);
             await _context.SaveChangesAsync();
         }
