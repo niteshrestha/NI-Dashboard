@@ -1,4 +1,5 @@
-﻿using NIDashboard.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NIDashboard.Data;
 using NIDashboard.Data.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,27 +17,17 @@ namespace NIDashboard.Service
 
         public async Task Add(Banner banner)
         {
-            _context.Add(banner);
-            await _context.SaveChangesAsync();
+            _context.Database.ExecuteSqlCommand($"spAddBanner {banner.Name}");
         }
 
         public async Task Delete(int id)
         {
-            var banner = GetById(id);
-            _context.Remove(banner);
-            await _context.SaveChangesAsync();
+            _context.Database.ExecuteSqlCommand($"spDeleteBanner {id}");
         }
 
         public IEnumerable<Banner> GetAll()
         {
-            return _context.Banners;
-        }
-
-        public Banner GetById(int id)
-        {
-            return _context.Banners
-                .Where(banner => banner.ID == id)
-                .FirstOrDefault();
+            return _context.Banners.FromSql("spGetBanners");
         }
     }
 }

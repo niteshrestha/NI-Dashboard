@@ -7,6 +7,6 @@ namespace NIDashboard.Data
     {
         SliderConfig GetSliderConfig();
         Task Save(SliderConfig sliderConfig);
-        Task Defaut();
+        Task DefaultConfig();
     }
 }

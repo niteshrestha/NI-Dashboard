@@ -59,7 +59,7 @@ namespace NIDashboard.Controllers
             var config = _sliderConfigService.GetSliderConfig();
             if (config == null)
             {
-                _sliderConfigService.Defaut();
+                _sliderConfigService.DefaultConfig();
             }
             config = _sliderConfigService.GetSliderConfig();
 

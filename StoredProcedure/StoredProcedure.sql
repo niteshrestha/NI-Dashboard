@@ -125,3 +125,78 @@ BEGIN
 	) AS [t0] ON [s.Posts].[SectionId] = [t0].[Id]
 	ORDER BY [t0].[Id];
 END
+
+GO
+
+CREATE PROCEDURE [dbo].[spAddBanner]
+	@Name nvarchar(MAX)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	INSERT INTO [Banners] ([Name])
+	VALUES (@Name);
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[spDeleteBanner]
+	@pId int
+AS
+BEGIN
+SET NOCOUNT ON;
+DELETE FROM [Banners]
+WHERE [ID] = @pId;
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[spGetBanners]
+AS
+BEGIN
+	SELECT [b].[ID], [b].[Name]
+	FROM [Banners] AS [b]
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[spGetSliderConfig]
+AS
+BEGIN
+	SELECT TOP(1) [s].[ID], [s].[AnimSpeed], [s].[BoxCols], [s].[BoxRows], [s].[Effect], [s].[PauseTime], [s].[Slices]
+	FROM [SliderConfigs] AS [s];
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[spDefaultSliderConfig]
+	@AnimSpeed int,
+	@BoxCols int,
+	@BoxRows int,
+	@Effect nvarchar(MAX),
+	@PauseTime int,
+	@Slices int
+AS
+BEGIN
+SET NOCOUNT ON;
+INSERT INTO [SliderConfigs] ([AnimSpeed], [BoxCols], [BoxRows], [Effect], [PauseTime], [Slices])
+VALUES (@AnimSpeed, @BoxCols, @BoxRows, @Effect, @PauseTime, @Slices);
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[spSaveSliderConfig]
+	@AnimSpeed int,
+	@BoxCols int,
+	@BoxRows int,
+	@Effect nvarchar(MAX),
+	@PauseTime int,
+	@Slices int,
+	@sId int
+AS
+BEGIN
+SET NOCOUNT ON;
+UPDATE [SliderConfigs] SET [AnimSpeed] = @AnimSpeed, [BoxCols] = @BoxCols, [BoxRows] = @BoxRows, [Effect] = @Effect, [PauseTime] = @PauseTime, [Slices] = @Slices
+WHERE [ID] = @sId;
+END
+
+GO
