@@ -38,36 +38,25 @@ namespace NIDashboard.Service
             return _context.SpLatestPosts.FromSql($"spGetLatestPost {n}").ToList();
         }
 
-        public IEnumerable<Post> Search(string searchQuery)
+        public IEnumerable<SpLatestPost> Search(string searchQuery)
         {
             var query = searchQuery.ToLower();
 
-            return _context.Posts
-                .Include(post => post.User)
-                .Include(post => post.Section)
-                .Where(post => post.Tags.ToLower().Contains(query)
-                || post.Content.ToLower().Contains(query)
-                || post.Title.ToLower().Contains(query));
+            return _context.SpLatestPosts.FromSql($"spSearch {query}").ToList();
         }
 
-        public IEnumerable<Post> SearchByTag(string searchQuery)
+        public IEnumerable<SpLatestPost> SearchByTag(string searchQuery)
         {
             var query = searchQuery.ToLower();
 
-            return _context.Posts
-                .Include(post => post.User)
-                .Include(post => post.Section)
-                .Where(post => post.Tags.ToLower().Contains(query));
+            return _context.SpLatestPosts.FromSql($"spSearchByTag {query}").ToList();
         }
 
-        public IEnumerable<Post> SearchByContent(string searchQuery)
+        public IEnumerable<SpLatestPost> SearchByContent(string searchQuery)
         {
             var query = searchQuery.ToLower();
 
-            return _context.Posts
-                .Include(post => post.User)
-                .Include(post => post.Section)
-                .Where(post => post.Content.ToLower().Contains(query));
+            return _context.SpLatestPosts.FromSql($"spSearchByContent {query}").ToList();
         }
     }
 }

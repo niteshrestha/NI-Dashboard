@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 using NIDashboard.Helpers;
 using NIDashboard.Models.Post;
 using NIDashboard.Models.Search;
@@ -24,13 +25,13 @@ namespace NIDashboard.Controllers
         }
         public IActionResult Result(string searchQuery, bool searchTag, bool searchContent)
         {
-            IEnumerable<Post> posts = null;
+            IEnumerable<SpLatestPost> posts = null;
 
-            if (searchTag)
+            if (searchTag && !searchContent)
             {
                 posts = _postService.SearchByTag(searchQuery).ToList();
             }
-            else if (searchContent)
+            else if (searchContent && !searchTag)
             {
                 posts = _postService.SearchByContent(searchQuery).ToList();
             }
@@ -46,11 +47,11 @@ namespace NIDashboard.Controllers
             var postListing = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
-                Section = BuildSectionListing(post),
                 Title = post.Title,
-                DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
-                Ago = td.PostTimeDifference(post.Created),
-                AuthorName = post.User.FirstName + " " + post.User.LastName,
+                AuthorName = string.Format("{0} {1}", post.FirstName, post.LastName),
+                DatePosted = td.PostTimeDifference(post.Created),
+                SectionId = post.SectionId,
+                SectionTitle = post.SectionTitle
             }).OrderByDescending(post => post.DatePosted);
 
             var model = new SearchResultModel
@@ -71,23 +72,6 @@ namespace NIDashboard.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Result", new { searchQuery, searchTag, searchContent });
-        }
-
-        private SectionListingModel BuildSectionListing(Post post)
-        {
-            var section = post.Section;
-
-            return BuildSectionListing(section);
-        }
-
-        private SectionListingModel BuildSectionListing(Section section)
-        {
-            return new SectionListingModel
-            {
-                Id = section.Id,
-                Title = section.Title,
-                Description = section.Description
-            };
         }
     }
 }

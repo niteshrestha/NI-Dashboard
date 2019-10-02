@@ -10,9 +10,9 @@ namespace NIDashboard.Data
     {
         SpPostDetail GetById(string id);
         IEnumerable<SpLatestPost> GetLatestPost(int n);
-        IEnumerable<Post> Search(string searchQuery);
-        IEnumerable<Post> SearchByTag(string searchQuery);
-        IEnumerable<Post> SearchByContent(string searchQuery);
+        IEnumerable<SpLatestPost> Search(string searchQuery);
+        IEnumerable<SpLatestPost> SearchByTag(string searchQuery);
+        IEnumerable<SpLatestPost> SearchByContent(string searchQuery);
 
         Task Add(Post post);
         Task Delete(string id);
