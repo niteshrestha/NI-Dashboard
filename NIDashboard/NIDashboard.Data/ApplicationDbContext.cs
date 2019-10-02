@@ -17,7 +17,8 @@ namespace NIDashboard.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<SliderConfig> SliderConfigs { get; set; }
-        public virtual DbSet<SpLatestPost> SpLatestPosts { get; set; }
-        public virtual DbSet<SpPostDetail> SpPostDetails { get; set; }
+        public DbSet<SpLatestPost> SpLatestPosts { get; set; }
+        public DbSet<SpPostDetail> SpPostDetails { get; set; }
+        public DbSet<SpSectionWithPost> SpSectionWithPosts { get; set; }
     }
 }

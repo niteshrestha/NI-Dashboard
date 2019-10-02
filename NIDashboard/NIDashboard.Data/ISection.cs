@@ -1,4 +1,5 @@
 ﻿using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,8 @@ namespace NIDashboard.Data
 {
     public interface ISection
     {
-        Section GetByID(int id);
+        IEnumerable<SpSectionWithPost> GetByID(int id);
+        Section GetSection(int id);
         IEnumerable<Section> GetAll();
 
         Task Create(Section section);

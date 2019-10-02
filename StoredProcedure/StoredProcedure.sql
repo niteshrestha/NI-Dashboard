@@ -93,3 +93,35 @@ BEGIN
 END
 
 GO
+
+CREATE PROCEDURE [dbo].[spGetSection]
+	@sId int
+AS
+BEGIN
+	SELECT TOP(1) [s].[Id], [s].[Description], [s].[Title]
+	FROM [Sections] AS [s]
+	WHERE [s].[Id] = @sId
+	ORDER BY [s].[Id];
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[spGetSectionById]
+	@sId int
+AS
+BEGIN
+	SELECT [s.Posts].[Id], [s.Posts].[Content], [s.Posts].[Created], [s.Posts].[SectionId], [s.Posts].[Tags], [s.Posts].[Title] AS [PostTitle], [t0].[Title] AS [SectionTitle], [t].[FirstName], [t].[LastName]
+	FROM [Posts] AS [s.Posts]
+	LEFT JOIN (
+		SELECT [p.User].*
+		FROM [AspNetUsers] AS [p.User]
+		WHERE [p.User].[Discriminator] = 'ApplicationUser'
+	) AS [t] ON [s.Posts].[UserId] = [t].[Id]
+	INNER JOIN (
+		SELECT TOP(1) [s0].[Id], [s0].[Title]
+		FROM [Sections] AS [s0]
+		WHERE [s0].[Id] = @sId
+		ORDER BY [s0].[Id]
+	) AS [t0] ON [s.Posts].[SectionId] = [t0].[Id]
+	ORDER BY [t0].[Id];
+END

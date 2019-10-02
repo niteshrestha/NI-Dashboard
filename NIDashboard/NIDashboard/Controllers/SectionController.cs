@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 using NIDashboard.Helpers;
 using NIDashboard.Models.Post;
 using NIDashboard.Models.Section;
@@ -49,20 +50,18 @@ namespace NIDashboard.Controllers
 
         public IActionResult Topic(int id)
         {
-            var section = _sectionService.GetByID(id);
-
-            var posts = section.Posts;
+            IEnumerable<SpSectionWithPost> posts = _sectionService.GetByID(id);
+            var section = _sectionService.GetSection(id);
 
             TimeDifference td = new TimeDifference();
 
             var postListing = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
-                Title = post.Title,
+                Title = post.PostTitle,
                 DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
                 Ago = td.PostTimeDifference(post.Created),
-                AuthorName = post.User.FirstName + " " + post.User.LastName,
-                Section = BuildSectionListing(post)
+                AuthorName = post.FirstName + " " + post.LastName
             }).OrderByDescending(post => post.DatePosted);
 
             var model = new SectionTopicModel
@@ -78,7 +77,7 @@ namespace NIDashboard.Controllers
         {
             var section = _sectionService.GetByID(Id);
 
-            foreach (var posts in section.Posts.ToList())
+            foreach (var posts in section.ToList())
             {
                 await _postService.Delete(posts.Id);
             }

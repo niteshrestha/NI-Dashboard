@@ -59,7 +59,7 @@ namespace NIDashboard.Controllers
         public IActionResult Create(int id)
         {
             //id is SectionId
-            var section = _sectionService.GetByID(id);
+            var section = _sectionService.GetSection(id);
 
             var model = new NewPostModel
             {
@@ -90,7 +90,7 @@ namespace NIDashboard.Controllers
 
         private Post BuildPost(NewPostModel model, ApplicationUser user)
         {
-            var section = _sectionService.GetByID(model.SectionId);
+            var section = _sectionService.GetSection(model.SectionId);
             return new Post
             {
                 Id = Guid.NewGuid().ToString(),

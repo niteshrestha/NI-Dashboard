@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NIDashboard.Data;
 using NIDashboard.Data.Models;
+using NIDashboard.Data.Models.spModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,15 +32,14 @@ namespace NIDashboard.Service
             return _context.Sections.FromSql("spGetSections");
         }
 
-        public Section GetByID(int id)
+        public IEnumerable<SpSectionWithPost> GetByID(int id)
         {
-            var section = _context.Sections
-                .Where(s => s.Id == id)
-                .Include(s => s.Posts)
-                .ThenInclude(p => p.User)
-                .FirstOrDefault();
+            return _context.SpSectionWithPosts.FromSql($"spGetSectionById {id}").ToList();
+        }
 
-            return section;
+        public Section GetSection(int id)
+        {
+            return _context.Sections.FromSql($"spGetSection {id}").FirstOrDefault();
         }
     }
 }
