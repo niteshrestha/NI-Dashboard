@@ -22,7 +22,7 @@ function getBanners() {
         type: "GET",
         url: "/api/getbanner",
         contentType: "application/json; charset=utf-8",
-        dataTye: "json",
+        dataType: "json",
         success: function (data) {
             let banners = "";
             $.each(data, function (i, item) {
@@ -44,7 +44,7 @@ function getConfig() {
         type: "GET",
         url: "/api/getconfig",
         contentType: "application/json; charset=utf-8",
-        dataTye: "json",
+        dataType: "json",
         success: function (data) {
             obj.effect = data.effect;
             obj.animSpeed = data.animSpeed;
